@@ -1,0 +1,38 @@
+<page-header [title]="'查询表格'"></page-header>
+<nz-card [nzBordered]="false">
+  <div nz-col [nzSpan]="18">
+    <form  nz-form [nzLayout]="'inline'" (ngSubmit)="getData()" class="search__form">
+      <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
+        <div nz-col nzMd="12" nzSm="24">
+          <nz-form-item>
+            <nz-form-label nzFor="no">任务名称</nz-form-label>
+            <nz-form-control>
+              <input nz-input [(ngModel)]="name" name="name" placeholder="请输入" id="name" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="expandForm ? 24 : 12">
+          <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">查询</button>
+          <button nz-button type="reset" (click)="reset()" class="mx-sm">重置</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div nz-col [nzSpan]="6">
+    <button nz-button (click)="add()" [nzType]="'primary'">
+      <i nz-icon nzType="plus"></i>
+      <span>添加</span>
+    </button>
+  </div>
+  <st #st
+      [data]="data"
+      [columns]="columns"
+      [loading]="loading"
+      [pi] = "page"
+      [ps] = "perpage"
+      [total]= "total"
+      [page]="pagination"
+      (change)="change($event)"
+  >
+  </st>
+</nz-card>

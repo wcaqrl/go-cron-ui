@@ -1,0 +1,18 @@
+<page-header [action]="phActionTpl">
+  <ng-template #phActionTpl>
+<!--    <button (click)="add()" nz-button nzType="primary">新建</button>-->
+  </ng-template>
+</page-header>
+<nz-card>
+  <sf mode="search" [schema]="searchSchema" (formSubmit)="submit($event)" (formReset)="st.reset($event)"></sf>
+  <st #st
+      virtualScroll [scroll]="{ x: '1800px', y: '480px' }"
+      [data]="data"
+      [columns]="columns"
+      [loading]="loading"
+      [pi] = "q.page"
+      [ps] = "q.perpage"
+      [total]= "total"
+      [page]="pagination"
+      (change)="change($event)"></st>
+</nz-card>
